@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <string>
 using namespace std;
 
@@ -17,15 +16,20 @@ int main(int argc, char** argv){
   string message;
   while(argv[1]==NULL){
     read();
-  }
+  }//when no filename is given
 
   for(int i = 1; argv[i]!=NULL;i++){
     if(*argv[i] == '-') {
       while(true){
 	read();
-      }
+      }//while
+    }//if a hyphen is found in the list of filenames
+    fd = open(argv[i], O_RDONLY);
+    while((n = read(fd, buffer, 1)) > 0){
+      cout << buffer;
     }
-    cout << open(argv[i], O_RDONLY) << endl;
-  }
+    cout << endl;
+  }//for, until it reaches no more files 
+
   return 0;
 }
