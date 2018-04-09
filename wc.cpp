@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <getopt.h>
+#include <string>
 
 using namespace std;
 
@@ -40,16 +41,28 @@ int main(int argc, char** argv){
       }
     }//while
 
+    for(int i = 1; argv[i] != NULL; i++){
 
-  for(int i = 1; argv[i] != NULL; i++){  //Reads all the files and computes the lines, bytes and words       
-    if(*argv[i] == '-'){
-      continue;
-    }
-    
-    fd = open(argv[i], O_RDONLY);
-    // check if fd is good                                                                                                                           
+      if(*argv[i] == '-'){
+	if(isL){
+	  continue;
+	}
+	else if(isC){
+	  continue;
+	}
+	else if(isW){
+	  continue;
+	}
+	else if(isL == false || isC == false || isW == false){
+	  string message;
+	  getline(cin, message);
+	  cout << message << endl;
+	}
+      }
+      fd = open(argv[i], O_RDONLY);
+      // check if fd is good                                                                                                                           
       if(fd < 0) cout << "error opening " << argv[i] << endl;     
-    //Computes bytes, newLines and spaces
+      //Computes bytes, newLines and spaces
       while((n = read(fd, buffer, 1)) > 0){
 	byteCount++;
 	if(*buffer == '\n'){
