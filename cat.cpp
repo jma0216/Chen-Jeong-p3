@@ -6,7 +6,7 @@ using namespace std;
 
 void read(){
   string message;
-  cin >> message;
+  getline(cin,message);
   cout << message << endl;
 }
 
