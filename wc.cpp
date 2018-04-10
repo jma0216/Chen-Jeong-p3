@@ -123,24 +123,3 @@ int main(int argc, char** argv){
       }
       
   }//main
-
-
-
-
-
-
-   /*
-      if(*argv[i] == '-' && *argv[i+1] == 'c'){
-	cout << byteCount << endl;
-      }//if
-      
-      else if(*argv[i] == '-' && *argv[i+1] == 'l'){
-	 cout << newLineCount << endl;
-      }//if else
-      
-      else if(*argv[i] == '-' && *argv[i+1] == 'w'){
-	cout << wordCount << endl;
-      }//else if
-     
-    */
- 
