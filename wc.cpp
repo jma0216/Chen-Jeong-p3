@@ -84,28 +84,32 @@ int main(int argc, char** argv){
       totalBytes += byteCount;
       
       if(isC == true){
-	cout << "Bytes: " <<byteCount << endl;
+	cout << byteCount << " " << argv[i];
+	cout << endl;
 	byteCount = 0;
       }
       
       if(isL){
-	cout << "Lines: " << newLineCount << endl;
+	cout << newLineCount << " " << argv[i];
+	cout << endl;
 	newLineCount = 0;
       }
       
       if(isW){
-	cout << "Words: " << wordCount << endl;
+	cout << wordCount << " " << argv[i];
+	cout << endl;
 	wordCount = 0;
       }
 
       else if (isC == false && isL == false && isW == false){
-      cout << "New Line Counts:" <<  newLineCount << endl;
+      cout << newLineCount << " ";
       newLineCount = 0;
-      cout << "Word counts:" << wordCount<< endl;
+      cout << wordCount<< " ";
       wordCount = 0;
-      cout << "Byte Counts: " << byteCount << endl;
+      cout << byteCount;
       byteCount = 0;
-      cout << argv[i] << endl;
+      cout << " " << argv[i];
+      cout << endl;
       }//else
   }//for
 
@@ -119,7 +123,7 @@ int main(int argc, char** argv){
 	cout << totalWords << " total" << endl;
       }
       else if (isL == false && isC == false && isW == false) {
-	cout << "L W B: " << totalLines << " " << totalWords << " " << totalBytes << " total" << endl;
+	cout << totalLines << " " << totalWords << " " << totalBytes << " total" << endl;
       }
       
   }//main
