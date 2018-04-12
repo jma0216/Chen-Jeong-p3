@@ -62,6 +62,7 @@ int main(int argc, char** argv){
       fd = open(argv[i], O_RDONLY);
       // check if fd is good                                                                                                                           
       if(fd < 0) cout << "error opening " << argv[i] << endl;     
+
       bool onChar = false;
      //Computes bytes, newLines and spaces
       while((n = read(fd, buffer, 1)) > 0){
@@ -70,6 +71,15 @@ int main(int argc, char** argv){
 	  newLineCount++;
 	}
 	
+	if(isspace(*buffer)){
+	  onChar = false;
+	}
+	else if(onChar == false){
+	  wordCount++;
+	  onChar = true;
+	}
+	
+	/*
 	if(isspace(*buffer)){ //If you read a space in buffer
 	  inSpace = true; //Then set to true because you read a space
 	}	
@@ -77,7 +87,7 @@ int main(int argc, char** argv){
 	  wordCount++;      //Increment
 	  inSpace = false;  //set back to false.
 	} 
-	
+	*/
       }//while
       
       totalLines += newLineCount;
