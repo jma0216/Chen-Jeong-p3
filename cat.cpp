@@ -4,6 +4,9 @@
 #include <string>
 using namespace std;
 
+/**
+ *read function that is called to receive input and print out to standard output
+ */
 void read(){
   string message;
   getline(cin,message);
