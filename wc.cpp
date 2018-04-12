@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -16,15 +15,15 @@ int main(int argc, char** argv){
   int newLineCount = 0;
   int wordCount = 0;
   int byteCount = 0;
-  bool inSpace = true;
+  bool inSpace = false;
   int totalLines = 0;
   int totalWords = 0;
   int totalBytes = 0;
   bool isC = false; 
   bool isL = false;
   bool isW = false;
+  int c;
 
-    int c;
     while((c = getopt(argc, argv, "l:c:w:")) != -1){
       switch (c){ 
       case 'l': 
@@ -44,6 +43,7 @@ int main(int argc, char** argv){
     for(int i = 1; argv[i] != NULL; i++){
 
       if(*argv[i] == '-'){
+	
 	if(isL){
 	  continue;
 	}
@@ -62,23 +62,24 @@ int main(int argc, char** argv){
       fd = open(argv[i], O_RDONLY);
       // check if fd is good                                                                                                                           
       if(fd < 0) cout << "error opening " << argv[i] << endl;     
-      //Computes bytes, newLines and spaces
+      bool onChar = false;
+     //Computes bytes, newLines and spaces
       while((n = read(fd, buffer, 1)) > 0){
 	byteCount++;
 	if(*buffer == '\n'){
 	  newLineCount++;
 	}
 	
-	if(isspace(*buffer)){
-	  inSpace = true;
-	}
+	if(isspace(*buffer)){ //If you read a space in buffer
+	  inSpace = true; //Then set to true because you read a space
+	}	
+	else if (inSpace){ //if you didn't read a space in buffer before (hence else if), but you read one before (hence condition)
+	  wordCount++;      //Increment
+	  inSpace = false;  //set back to false.
+	} 
 	
-	else if(inSpace){
-	  wordCount++;
-	  inSpace = false;
-	}
       }//while
-        
+      
       totalLines += newLineCount;
       totalWords += wordCount;
       totalBytes += byteCount;
@@ -104,7 +105,7 @@ int main(int argc, char** argv){
       else if (isC == false && isL == false && isW == false){
       cout << newLineCount << " ";
       newLineCount = 0;
-      cout << wordCount<< " ";
+      cout << wordCount << " ";
       wordCount = 0;
       cout << byteCount;
       byteCount = 0;
