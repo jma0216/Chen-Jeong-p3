@@ -1,7 +1,7 @@
 #### Chen-Jeong-p3
      
 Freda Chen (811840690)
-Mina Jeong (811#)
+Mina Jeong (811990218)
 
  We divided up the bulk of the project in that Mina did cat.cpp and Freda did wc.cpp as a whole. Mina also wrote env.cpp. We both contributed to the 
  project through little edits here and there and collaborated in making the other .cpp files. We worked together by collaborating in term fo getting
