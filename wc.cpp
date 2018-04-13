@@ -46,7 +46,6 @@ int main(int argc, char** argv){
     }//while
 
   for(int i = 1; argv[i] != NULL; i++){ //Goes through the arguments
-
     if(*argv[i] == '-'){    //If one of the arguments start with '-'
 	
 	if(isL){
@@ -59,14 +58,17 @@ int main(int argc, char** argv){
 	  continue;
 	}
 	else if(isL == false || isC == false || isW == false){ //Read from standard input 
+	  while (true){
 	  string message;
 	  getline(cin, message);
-	  cout << message << endl;
-	}
-      }
-      fd = open(argv[i], O_RDONLY);
+	  }
+	}//if
+    }
+	fd = open(argv[i], O_RDONLY);
       // check if fd is good                                                                                                                           
-      if(fd < 0) cout << "error opening " << argv[i] << endl;     
+      if(fd < 0){
+	cout << "error opening" << endl;
+      } 
 
       bool onChar = false;
 
@@ -134,7 +136,16 @@ int main(int argc, char** argv){
       if(isW){
 	cout << totalWords << " total" << endl;
       }
-      else if (isL == false && isC == false && isW == false) {
+      else if (isL == false && isC == false && isW == false){
+	if(totalLines == 0 && totalWords == 0 && totalBytes == 0){
+	  while (true){
+	    string message;
+	    getline(cin, message);
+	  }//while true
+	}//if
+	else{
 	cout << totalLines << " " << totalWords << " " << totalBytes << " total" << endl;
+	}//else
       }
+      
   }//main
