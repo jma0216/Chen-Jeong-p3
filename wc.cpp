@@ -24,7 +24,7 @@ int main(int argc, char** argv){
   bool isW = false;
   int c;
 
-    while((c = getopt(argc, argv, "l:c:w:")) != -1){
+  while((c = getopt(argc, argv, "l:c:w:")) != -1){  //Determines the option wither -l, -c, -w
       switch (c){ 
       case 'l': 
 	isL = true;
@@ -40,9 +40,9 @@ int main(int argc, char** argv){
       }
     }//while
 
-    for(int i = 1; argv[i] != NULL; i++){
+  for(int i = 1; argv[i] != NULL; i++){ //Goes through the arguments
 
-      if(*argv[i] == '-'){
+    if(*argv[i] == '-'){    //If one of the arguments start with '-'
 	
 	if(isL){
 	  continue;
@@ -53,7 +53,7 @@ int main(int argc, char** argv){
 	else if(isW){
 	  continue;
 	}
-	else if(isL == false || isC == false || isW == false){
+	else if(isL == false || isC == false || isW == false){ //Read from standard input 
 	  string message;
 	  getline(cin, message);
 	  cout << message << endl;
@@ -64,54 +64,49 @@ int main(int argc, char** argv){
       if(fd < 0) cout << "error opening " << argv[i] << endl;     
 
       bool onChar = false;
-     //Computes bytes, newLines and spaces
+
+      //Computes bytes, newLines and spaces
       while((n = read(fd, buffer, 1)) > 0){
-	byteCount++;
-	if(*buffer == '\n'){
+	byteCount++;  
+	if(*buffer == '\n'){ //If you see a newline character
 	  newLineCount++;
 	}
 	
-	if(isspace(*buffer)){
-	  onChar = false;
-	}
-	else if(onChar == false){
-	  wordCount++;
-	  onChar = true;
-	}
-	
-	/*
 	if(isspace(*buffer)){ //If you read a space in buffer
-	  inSpace = true; //Then set to true because you read a space
-	}	
-	else if (inSpace){ //if you didn't read a space in buffer before (hence else if), but you read one before (hence condition)
-	  wordCount++;      //Increment
-	  inSpace = false;  //set back to false.
-	} 
-	*/
+	  onChar = false;  //Then it is not on a character
+	}
+	else if(onChar == false){ //If you didnt read a space, and the previous buffer read was not a character
+	  wordCount++;     //Then increment word
+	  onChar = true;  //Set to true
+	}
       }//while
       
-      totalLines += newLineCount;
-      totalWords += wordCount;
-      totalBytes += byteCount;
-      
+      totalLines += newLineCount; //Total lines
+      totalWords += wordCount;    //Total words
+      totalBytes += byteCount;    //Total Bytes
+       
+      //Prints Bytes
       if(isC == true){
 	cout << byteCount << " " << argv[i];
 	cout << endl;
 	byteCount = 0;
       }
       
+      //Prints New Lines
       if(isL){
 	cout << newLineCount << " " << argv[i];
 	cout << endl;
 	newLineCount = 0;
       }
       
+      //Prints Word counts
       if(isW){
 	cout << wordCount << " " << argv[i];
 	cout << endl;
 	wordCount = 0;
       }
 
+      //Prints Lines, Words, and Bytes for each Argument
       else if (isC == false && isL == false && isW == false){
       cout << newLineCount << " ";
       newLineCount = 0;
@@ -124,6 +119,7 @@ int main(int argc, char** argv){
       }//else
   }//for
 
+  //Prints the total amount of bytes, lines, and total words.
       if(isL){
 	cout << totalLines << " total" << endl;
       }
@@ -136,5 +132,4 @@ int main(int argc, char** argv){
       else if (isL == false && isC == false && isW == false) {
 	cout << totalLines << " " << totalWords << " " << totalBytes << " total" << endl;
       }
-      
   }//main
