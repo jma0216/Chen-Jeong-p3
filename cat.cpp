@@ -18,6 +18,9 @@ void read(){
  *when run ./cat [files], it will return all the files' contents   
  *when - is in the list of files, then start reading from standard input
  *if no files are specified, cat reads from standard input only   
+ * 
+ * @param argc
+ * @param argv
  */
 int main(int argc, char** argv){
   int fd, n;

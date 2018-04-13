@@ -8,6 +8,12 @@
 
 using namespace std;
 
+/*
+ * This main function is able to compute the number of words, bytes and lines given a file or multiple files.
+ * One can specify the output given options -w, -l, -c.
+ * @param argc
+ * @param argv
+ */
 int main(int argc, char** argv){
   int fd;
   int n = 0;
@@ -15,7 +21,6 @@ int main(int argc, char** argv){
   int newLineCount = 0;
   int wordCount = 0;
   int byteCount = 0;
-  bool inSpace = false;
   int totalLines = 0;
   int totalWords = 0;
   int totalBytes = 0;
