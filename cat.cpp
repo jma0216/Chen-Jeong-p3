@@ -13,6 +13,12 @@ void read(){
   cout << message << endl;
 }
 
+/**
+ *the main function reads the files sequentially, writing them to standard output  
+ *when run ./cat [files], it will return all the files' contents   
+ *when - is in the list of files, then start reading from standard input
+ *if no files are specified, cat reads from standard input only   
+ */
 int main(int argc, char** argv){
   int fd, n;
   char buffer[1];
@@ -31,7 +37,7 @@ int main(int argc, char** argv){
     while((n = read(fd, buffer, 1)) > 0){
       cout << buffer;
     }
-    cout << endl;
+    //cout << endl;
   }//for, until it reaches no more files 
 
   return 0;
