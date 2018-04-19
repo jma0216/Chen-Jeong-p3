@@ -11,24 +11,20 @@ int main(int argc, char** argv){
   pid_t pid;
   pid_t ppid;
 
-  cout << "before fork";
+  cout << "This is process id: " << getpid() << endl;
+  cout << "This is parent process id: " << getppid() << endl;
+
   
   if ((pid = fork()) == -1) { // error
     perror("FORK ERROR");
   } 
   else if (pid == 0) {    // in child process  
-    cout << " in child process id =  " << getpid();
+    cout << " Process id after fork=  " << getpid() << endl;
+    cout << " Parent process id after  fork= " << getppid() << endl;
   } 
   else {                  // in parent process
     sleep(3);
-    cout << " in parent process id = " << getppid();
   } // if
 
-  cout << endl;
-  cout << "After fork: " << "mypid = " << getpid() << ", " 
-       << "myppid = " << getppid() << endl;
- 
   return EXIT_SUCCESS;
-
-
 }
