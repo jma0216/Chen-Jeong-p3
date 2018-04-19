@@ -1,34 +1,28 @@
-all: cat wc false true env
+all: size newer dirlist forkpid
 
-cat: cat.o
-	g++ -o cat cat.o
+size: size.o
+	g++ -o size size.o
 
-wc: wc.o
-	g++ -o wc wc.o
+newer: newer.o
+	g++ -o newer newer.o
 
-false: false.o
-	g++ -o false false.o
+dirlist: dirlist.o
+	g++ -o dirlist dirlist.o
 
-true: true.o
-	g++ -o true true.o
+forkpid: forkpid.o
+	g++ -o forkpid forkpid.o
 
-env: env.o
-	g++ -o env env.o
+size.o: size.cpp
+	g++ -c size.cpp -Wall -std=c++14 -g -O0 -pedantic-errors
 
-cat.o: cat.cpp
-	g++ -c cat.cpp -Wall -std=c++14 -g -O0 -pedantic-errors
+newer.o: newer.cpp
+	g++ -c newer.cpp -Wall -std=c++14 -g -O0 -pedantic-errors
 
-wc.o: wc.cpp
-	g++ -c wc.cpp -Wall -std=c++14 -g -O0 -pedantic-errors
+dirlist.o: dirlist.cpp
+	g++ -c dirlist.cpp -Wall -std=c++14 -g -O0 -pedantic-errors
 
-false.o: false.cpp
-	g++ -c false.cpp -Wall -std=c++14 -g -O0 -pedantic-errors
-
-true.o: true.cpp
-	g++ -c true.cpp -Wall -std=c++14 -g -O0 -pedantic-errors
-
-env.o: env.cpp
-	g++ -c env.cpp -Wall -std=c++14 -g -O0 -pedantic-errors
+forkpid.o: forkpid.cpp
+	g++ -c forkpid.cpp -Wall -std=c++14 -g -O0 -pedantic-errors
 
 clean:
-	rm cat wc false true env cat.o wc.o false.o true.o env.o
+	rm size newer dirlist forkpid size.o newer.o dirlist.o forkpid.o

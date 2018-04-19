@@ -10,6 +10,11 @@
 
 using namespace std;
 
+/*
+ * The main method in newer.cpp determines which file is newer according to the requested component of stat time.
+ * @param argc
+ * @param argv
+ */
 int main(int argc, char** argv){
 
   struct stat s;
@@ -58,32 +63,47 @@ int main(int argc, char** argv){
 
     if(isA){
       d = difftime(s.st_atime, str.st_atime);
+      cout << "Most recent file: " << endl;
       if (d > 0.0){
-	cout << ctime(&s.st_atime) << endl;
+	cout << ctime(&s.st_atime) << argv[2] << endl;
       }
       else{
-	cout << ctime(&str.st_atime) << endl;
+	cout << ctime(&str.st_atime) << argv[3] << endl;
       }//else
+      cout << endl;
+      cout << "The times for each of the files" << endl;
+      cout << ctime(&s.st_atime) << argv[2] << endl;
+      cout << ctime(&str.st_atime) << argv[3] << endl;
     }//isA
     
     if(isM){
       d = difftime(s.st_mtime, str.st_mtime);
+      cout << "Most recent file: " << endl;
       if(d > 0.0){
-	cout << ctime(&s.st_mtime) << endl;
+	cout << ctime(&s.st_mtime) << argv[2] << endl;
       }
       else{
-	cout << ctime(&str.st_mtime) << endl;
+	cout << ctime(&str.st_mtime) << argv[3] << endl;
       }//else
+      cout << endl;
+      cout << "The times for each of the files" << endl;
+      cout << ctime(&s.st_mtime) << argv[2] << endl;
+      cout << ctime(&str.st_mtime) << argv[3] << endl;
     }//isM
     
     if(isC){
       d = difftime(s.st_ctime, str.st_ctime);
+      cout << "Most recent file: " << endl;
       if(d > 0.0){
-	cout << ctime(&s.st_ctime) << endl;
+	cout << ctime(&s.st_ctime) << argv[2] << endl;
       }
       else{
-	cout << ctime(&s.st_ctime) << endl;
+	cout << ctime(&s.st_ctime) << argv[3] << endl;
       } 
+      cout << endl;
+      cout << "The times for each of the files" << endl;
+      cout << ctime(&s.st_ctime) << argv[2] << endl;
+      cout << ctime(&s.st_ctime) << argv[3] << endl;
     }//isC  
 
 }//main

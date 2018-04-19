@@ -9,7 +9,6 @@ using namespace std;
 int main(int argc, char** argv){
   
   pid_t pid;
-  pid_t ppid;
 
   cout << "This is process id: " << getpid() << endl;
   cout << "This is parent process id: " << getppid() << endl;
